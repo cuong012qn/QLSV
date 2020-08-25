@@ -16,18 +16,19 @@ namespace QLSinhVien_UWP.Models
         public string IDStudent { get; set; }
         //public int IDCourse { get; set; }
         public Course Course { get; set; }
+        public Semester Semester { get; set; }
 
         public void CalcAverage()
         {
             this.AverageScore = (this.Test + this.MidTerm * 3 + this.Final * 3) / 6;
         }
 
-        public async Task<int> Delete(string CourseID)
+        public async Task<int> Delete(string IDCourse, string IDSemester)
         {
-            if (!string.IsNullOrEmpty(CourseID))
+            if (!string.IsNullOrEmpty(IDCourse) && !string.IsNullOrEmpty(IDSemester))
             {
-                string query = @"Delete from Grade Where Grade.CourseID = @CourseID ";
-                return await DataProvider.Instance.ExecuteNonAsync(query, new object[] { CourseID });
+                string query = @"Delete from Grade Where IDCourse = @IDCourse and IDSemester = @IDSemester ";
+                return await DataProvider.Instance.ExecuteNonAsync(query, new object[] { IDCourse, IDSemester });
             }
             return -1;
         }
@@ -35,8 +36,9 @@ namespace QLSinhVien_UWP.Models
         public ObservableCollection<Grade> GetGrades()
         {
             ObservableCollection<Grade> grades = new ObservableCollection<Grade>();
-            string query = @"select Grade.ID, Test, MidTerm, Final, AverageScore, IDStudent, IDCourse, Course.Name from Grade
-                            join Course on Course.ID = Grade.IDCourse";
+            string query = @"select Grade.ID, Test, MidTerm, Final, AverageScore, IDStudent, IDCourse, Course.Name, IDSemester, Semester.Name from Grade
+                            join Course on Course.ID = Grade.IDCourse
+                            join Semester on Semester.ID = Grade.IDSemester";
             var datatable = DataProvider.Instance.GetDataTable(query);
 
             for (int i = 0; i < datatable.Rows.Count; i++)
@@ -57,6 +59,12 @@ namespace QLSinhVien_UWP.Models
                     Name = datatable.Rows[i][7].ToString()
                 };
 
+                grade.Semester = new Semester()
+                {
+                    ID = Convert.ToInt32(datatable.Rows[i][8]),
+                    Name = datatable.Rows[i][9].ToString()
+                };
+
                 grades.Add(grade);
             }
 
@@ -69,8 +77,8 @@ namespace QLSinhVien_UWP.Models
             {
                 grade.CalcAverage();
                 string query = @"Insert into Grade 
-                            (IDCourse, IDStudent, Test, Midterm, Final, AverageScore) 
-                            values ( @IDCourse , @IDStudent , @Test , @Midterm , @Final , @Average )";
+                            (IDCourse, IDStudent, Test, Midterm, Final, AverageScore, IDSemester ) 
+                            values ( @IDCourse , @IDStudent , @Test , @Midterm , @Final , @Average , @IDSemester )";
                 var findCourse = GetGrades().Where(x => x.Course.ID == grade.Course.ID && x.IDStudent == grade.IDStudent).SingleOrDefault();
                 if (findCourse == null)
                 {
@@ -81,7 +89,8 @@ namespace QLSinhVien_UWP.Models
                         grade.Test,
                         grade.MidTerm,
                         grade.Final,
-                        grade.AverageScore
+                        grade.AverageScore,
+                        grade.Semester.ID
                     });
                 }
                 else return -1;
@@ -105,7 +114,7 @@ namespace QLSinhVien_UWP.Models
                     grade.Final,
                     grade.AverageScore,
                     grade.Course.ID,
-                    grade.IDStudent  
+                    grade.IDStudent
                 });
             }
             return -1;

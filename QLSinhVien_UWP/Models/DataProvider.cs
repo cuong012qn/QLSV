@@ -24,6 +24,7 @@ namespace QLSinhVien_UWP.Models
         private ClassType _ClassType;
         private Grade _Grade;
         private Course _Course;
+        private Semester _Semester;
         #endregion
 
         private volatile static DataProvider _instance;
@@ -110,6 +111,19 @@ namespace QLSinhVien_UWP.Models
                 return _Course;
             }
             private set => _Course = value;
+        }
+        public Semester Semester
+        {
+            get
+            {
+                lock (lockAsync)
+                {
+                    if (_Semester == null)
+                        _Semester = new Semester();
+                }
+                return _Semester;
+            }
+            private set { _Semester = value; }
         }
 
         public async Task<ObservableCollection<User>> UsersAsync()

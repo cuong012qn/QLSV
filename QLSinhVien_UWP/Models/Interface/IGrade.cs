@@ -12,7 +12,7 @@ namespace QLSinhVien_UWP.Models.Interface
         ObservableCollection<Grade> GetGrades();
 
         Task<int> Insert(Grade grade);
-        Task<int> Delete(string CourseID);
+        Task<int> Delete(string IDCourse, string IDSemester);
         Task<int> Update(Grade grade);
     }
 }

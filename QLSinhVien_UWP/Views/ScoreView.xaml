@@ -51,6 +51,9 @@
                 <ComboBox Header="Môn" Margin="5" Width="120"  x:Name="CbbCourse"
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding ListCoure, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+
+                <ComboBox Header="Học kỳ" Margin="5" Width="120" x:Name="CbbSemester"
+                          DisplayMemberPath="Name"></ComboBox>
                 <StackPanel VariableSizedWrapGrid.ColumnSpan="4" Orientation="Horizontal"
                             x:Name="SpButton">
                     <Button x:Name="BtnAdd" Click="AddScore_Click">
@@ -64,6 +67,13 @@
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Edit"></SymbolIcon>
                             <TextBlock>Sửa</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnDelete" Click="BtnDelete_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Delete"></SymbolIcon>
+                            <TextBlock>Xóa</TextBlock>
                         </StackPanel>
                     </Button>
 
@@ -86,7 +96,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="960"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <controls:DockPanel>
                 <StackPanel Orientation="Horizontal" controls:DockPanel.Dock="Top" HorizontalAlignment="Right">
@@ -134,6 +144,7 @@
                     <controls:DataGridTextColumn Header="45 phút" Binding="{Binding MidTerm}"></controls:DataGridTextColumn>
                     <controls:DataGridTextColumn Header="Cuối kì" Binding="{Binding Final}"></controls:DataGridTextColumn>
                     <controls:DataGridTextColumn Header="Tổng kết" Binding="{Binding AverageScore}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="Học kỳ" Binding="{Binding Semester.Name}"></controls:DataGridTextColumn>
                 </controls:DataGrid.Columns>
             </controls:DataGrid>
         </Grid>

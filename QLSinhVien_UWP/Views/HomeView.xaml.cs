@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using QLSinhVien_UWP.Models;
+using System.Collections.ObjectModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -25,11 +26,14 @@ namespace QLSinhVien_UWP.Views
     /// </summary>
     public sealed partial class HomeView : Page
     {
+        ObservableCollection<object> Collection = new ObservableCollection<object>();
+
         public HomeView()
         {
             this.InitializeComponent();
 
             GetData();
+
         }
 
         public async void GetData()

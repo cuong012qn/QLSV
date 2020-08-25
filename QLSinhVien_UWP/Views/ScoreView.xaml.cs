@@ -24,6 +24,7 @@ namespace QLSinhVien_UWP.Views
         private ObservableCollection<ClassType> AllClassType = new ObservableCollection<ClassType>(DataProvider.Instance.ClassType.GetClassTypes());
         private ObservableCollection<Grade> AllGrade = new ObservableCollection<Grade>();
         private ObservableCollection<Course> AllCourse = new ObservableCollection<Course>(DataProvider.Instance.Course.GetCourses());
+        private ObservableCollection<Semester> Semesters = new ObservableCollection<Semester>(DataProvider.Instance.Semester.GetSemesters());
 
         private ObservableCollection<Student> FilterStudent;
         private ObservableCollection<Class> FilterClass;
@@ -42,6 +43,7 @@ namespace QLSinhVien_UWP.Views
 
             CbbClassType.ItemsSource = FilterClassType;
             CbbClass.ItemsSource = FilterClass;
+            CbbSemester.ItemsSource = Semesters;
             DtgvStudent.ItemsSource = FilterStudent;
             CbbCourse.ItemsSource = AllCourse;
 
@@ -138,11 +140,13 @@ namespace QLSinhVien_UWP.Views
                 TxbMidTerm.Text = Helper.GetString(selection.MidTerm);
                 TxbFinal.Text = Helper.GetString(selection.Final);
                 TxbAverage.Text = Helper.GetString(selection.AverageScore);
-                CbbCourse.SelectedIndex = selection.ID - 1;
+                CbbCourse.SelectedIndex = selection.Course.ID - 1;
+                CbbSemester.SelectedIndex = selection.Semester.ID - 1;
                 Helper.SetEnable(SpTxbCourse);
             }
             Helper.SetDisable(SpButton, "Button");
             BtnEdit.IsEnabled = true;
+            BtnDelete.IsEnabled = true;
         }
 
         private void ValidTextbox_TextChanged(object sender, TextChangedEventArgs e)
@@ -187,7 +191,8 @@ namespace QLSinhVien_UWP.Views
         private async void BtnSave_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             if (!string.IsNullOrEmpty(TxbTest.Text) && !string.IsNullOrEmpty(TxbMidTerm.Text)
-                && !string.IsNullOrEmpty(TxbFinal.Text) && CbbCourse.SelectedValue != null)
+                && !string.IsNullOrEmpty(TxbFinal.Text) && CbbCourse.SelectedValue != null
+                && CbbSemester.SelectedValue != null)
             {
                 if (Helper.IsValid(SpTxbCourse))
                 {
@@ -197,7 +202,8 @@ namespace QLSinhVien_UWP.Views
                         Test = Convert.ToSingle(TxbTest.Text),
                         MidTerm = Convert.ToSingle(TxbMidTerm.Text),
                         Final = Convert.ToSingle(TxbFinal.Text),
-                        Course = CbbCourse.SelectedValue as Course
+                        Course = CbbCourse.SelectedValue as Course,
+                        Semester = CbbSemester.SelectedValue as Semester
                     };
                     var res = await DataProvider.Instance.Grade.Insert(grade);
                     if (res > 0)
@@ -266,6 +272,23 @@ namespace QLSinhVien_UWP.Views
                 }
             }
         }
+
+        private async void BtnDelete_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var IDcourse = CbbCourse.SelectedValue as Course;
+            var IDSemester = CbbSemester.SelectedValue as Semester;
+            if (IDcourse != null && IDSemester != null)
+            {
+                int result = await DataProvider.Instance.Grade.Delete(IDcourse.ID.ToString(), IDSemester.ID.ToString());
+                if (result > 0)
+                {
+                    RefreshData();
+                    Helper.ClearText(SpTxbCourse);
+                    Helper.SetDisable(SpButton, "Button");
+                    BtnAdd.IsEnabled = true;
+                }
+            }
+        }
         #endregion
 
         private void RefreshData()
@@ -275,5 +298,7 @@ namespace QLSinhVien_UWP.Views
             var FindStudent = DataProvider.Instance.Grade.GetGrades().Where(x => x.IDStudent.ToString().Equals(TxbStudentID.Text));
             DtgvScore.ItemsSource = FindStudent;
         }
+
+
     }
 }
