@@ -1,0 +1,141 @@
+﻿<Page
+    x:Class="QLSinhVien_UWP.Views.ScoreView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QLSinhVien_UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <controls:DockPanel>
+
+        <StackPanel controls:DockPanel.Dock="Top" HorizontalAlignment="Right">
+            <VariableSizedWrapGrid HorizontalAlignment="Right" Orientation="Horizontal">
+                <VariableSizedWrapGrid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="Width" Value="120"></Setter>
+                        <Setter Property="IsReadOnly" Value="True"></Setter>
+                    </Style>
+                </VariableSizedWrapGrid.Resources>
+
+                <TextBox Header="Mã học sinh" x:Name="TxbStudentID"></TextBox>
+                <TextBox Header="Họ tên" x:Name="TxbStudentName"></TextBox>
+                <TextBox Header="Lớp" x:Name="TxbClassName"></TextBox>
+                <TextBox Header="Ngày sinh" x:Name="TxbBirthDate"></TextBox>
+                <TextBox Header="Giới tính" x:Name="TxbGender"></TextBox>
+                <TextBox Header="Email" x:Name="TxbEmail"></TextBox>
+                <TextBox Header="Địa chỉ" x:Name="TxbAddress"></TextBox>
+            </VariableSizedWrapGrid>
+
+            <VariableSizedWrapGrid Orientation="Horizontal" HorizontalAlignment="Right"
+                                   x:Name="SpTxbCourse">
+                <VariableSizedWrapGrid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="MinWidth" Value="120"></Setter>
+                        <Setter Property="IsEnabled" Value="False"></Setter>
+                    </Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="5 19 0 0"></Setter>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                        <Setter Property="MinWidth" Value="100"></Setter>
+                    </Style>
+                </VariableSizedWrapGrid.Resources>
+                <TextBox Header="15 phút" x:Name="TxbTest" TextChanged="ValidTextbox_TextChanged"></TextBox>
+                <TextBox Header="Giữa kì" x:Name="TxbMidTerm" TextChanged="ValidTextbox_TextChanged"></TextBox>
+                <TextBox Header="Cuối kì" x:Name="TxbFinal" TextChanged="ValidTextbox_TextChanged"></TextBox>
+                <TextBox Header="Trung bình" x:Name="TxbAverage" IsReadOnly="True"></TextBox>
+                <ComboBox Header="Môn" Margin="5" Width="120"  x:Name="CbbCourse"
+                          DisplayMemberPath="Name"
+                          ItemsSource="{Binding ListCoure, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                <StackPanel VariableSizedWrapGrid.ColumnSpan="4" Orientation="Horizontal"
+                            x:Name="SpButton">
+                    <Button x:Name="BtnAdd" Click="AddScore_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Add"></SymbolIcon>
+                            <TextBlock>Thêm</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnEdit" Click="BtnEdit_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Edit"></SymbolIcon>
+                            <TextBlock>Sửa</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnSave" Click="BtnSave_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Save"></SymbolIcon>
+                            <TextBlock>Lưu</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="BtnSkip" Click="BtnSkip_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Clear"></SymbolIcon>
+                            <TextBlock>Bỏ qua</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </VariableSizedWrapGrid>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <controls:DockPanel>
+                <StackPanel Orientation="Horizontal" controls:DockPanel.Dock="Top" HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Margin" Value="5"></Setter>
+                            <Setter Property="MinWidth" Value="100"></Setter>
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="5"></Setter>
+                            <Setter Property="Width" Value="120"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBox Header="MSHS" x:Name="TxbFindByID" TextChanged="TxbFindByID_TextChanged"></TextBox>
+                    <TextBox Header="Họ tên" x:Name="TxbFindByName" TextChanged="TxbFindByID_TextChanged"></TextBox>
+                    <ComboBox x:Name="CbbClassType" Header="Chọn khối"
+                              DisplayMemberPath="Name" SelectionChanged="CbbClassType_SelectionChanged"></ComboBox>
+                    <ComboBox x:Name="CbbClass" Header="Chọn lớp"
+                              IsEnabled="False" SelectionChanged="CbbClass_SelectionChanged"
+                              DisplayMemberPath="Name"></ComboBox>
+                </StackPanel>
+
+                <controls:DataGrid ItemsSource="{Binding FilterStudent}" HorizontalScrollBarVisibility="Visible"
+                           x:Name="DtgvStudent" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible"
+                                   SelectionMode="Extended"
+                           IsReadOnly="True" CanUserSortColumns="True" SelectionChanged="DtgvStudent_SelectionChanged">
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridTextColumn Header="MSHS" Binding="{Binding ID}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Họ tên" Binding="{Binding Name}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Ngày sinh" Binding="{Binding BirthDate}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Giới tính" Binding="{Binding Gender}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Email" Binding="{Binding Email}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Địa chỉ" Binding="{Binding Address}"></controls:DataGridTextColumn>
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
+            </controls:DockPanel>
+
+            <controls:DataGrid Grid.Column="1" ItemsSource="{Binding FilterScore}" HorizontalScrollBarVisibility="Auto"
+                           x:Name="DtgvScore" AutoGenerateColumns="False"
+                               SelectionChanged="DtgvScore_SelectionChanged"
+                           IsReadOnly="True" CanUserSortColumns="True">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="Tên môn học" Binding="{Binding Course.Name}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="15 phút" Binding="{Binding Test}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="45 phút" Binding="{Binding MidTerm}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="Cuối kì" Binding="{Binding Final}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="Tổng kết" Binding="{Binding AverageScore}"></controls:DataGridTextColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+        </Grid>
+    </controls:DockPanel>
+</Page>

@@ -1,0 +1,44 @@
+﻿<ContentDialog x:ConnectionId='1'
+    x:Class="QLSinhVien_UWP.Dialog.AddClassDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QLSinhVien_UWP.Dialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls ="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Title="Thêm lớp"
+    PrimaryButtonText="Thêm"
+    SecondaryButtonText="Thoát"
+                                                         
+                                                             >
+
+    <StackPanel>
+        <TextBox x:ConnectionId='2' Header="Tên lớp" PlaceholderText="Nhập tên lớp"
+                 Name="TxbClassName"></TextBox>
+        <controls:DockPanel>
+            <Button x:ConnectionId='6' x:Name="BtnAddClassType" Margin="2 22 0 0" controls:DockPanel.Dock="Right"
+                    IsEnabled="False"                              >Thêm</Button>
+            <TextBox x:ConnectionId='7' Header="Tên khối lớp" PlaceholderText="Nhập khối lớp" IsEnabled="False"
+                 Name="TxbClassTypeName"                                           ></TextBox>
+        </controls:DockPanel>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox x:ConnectionId='3' Header="Thuộc khối" PlaceholderText="Chọn khối"
+                      x:Name="CbbClassType"></ComboBox>
+            <Button x:ConnectionId='4' Margin=" 5 22 0 0" x:Name="BtnClassType"
+                                              >
+                <StackPanel>
+                    <SymbolIcon Symbol="Add"></SymbolIcon>
+                </StackPanel>
+            </Button>
+
+            <Button x:ConnectionId='5' Margin="5 22 0 0" x:Name="BtnRemoveCType"
+                                                >
+                <StackPanel>
+                    <SymbolIcon Symbol="Remove"></SymbolIcon>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</ContentDialog>
+

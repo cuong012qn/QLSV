@@ -1,0 +1,43 @@
+﻿<ContentDialog
+    x:Class="QLSinhVien_UWP.Dialog.AddClassDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QLSinhVien_UWP.Dialog"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls ="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Title="Thêm lớp"
+    PrimaryButtonText="Thêm"
+    SecondaryButtonText="Thoát"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <StackPanel>
+        <TextBox Header="Tên lớp" PlaceholderText="Nhập tên lớp"
+                 Name="TxbClassName"></TextBox>
+        <controls:DockPanel>
+            <Button x:Name="BtnAddClassType" Margin="2 22 0 0" controls:DockPanel.Dock="Right"
+                    IsEnabled="False" Click="BtnAddClassType_Click">Thêm</Button>
+            <TextBox Header="Tên khối lớp" PlaceholderText="Nhập khối lớp" IsEnabled="False"
+                 Name="TxbClassTypeName" TextChanged="TxbClassTypeName_TextChanged"></TextBox>
+        </controls:DockPanel>
+        <StackPanel Orientation="Horizontal">
+            <ComboBox Header="Thuộc khối" PlaceholderText="Chọn khối"
+                      x:Name="CbbClassType"></ComboBox>
+            <Button Margin=" 5 22 0 0" x:Name="BtnClassType"
+                    Click="BtnClassType_Click">
+                <StackPanel>
+                    <SymbolIcon Symbol="Add"></SymbolIcon>
+                </StackPanel>
+            </Button>
+
+            <Button Margin="5 22 0 0" x:Name="BtnRemoveCType"
+                    Click="BtnRemoveCType_Click">
+                <StackPanel>
+                    <SymbolIcon Symbol="Remove"></SymbolIcon>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</ContentDialog>

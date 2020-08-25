@@ -1,0 +1,132 @@
+﻿<Page
+    x:Class="QLSinhVien_UWP.Views.StudentView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QLSinhVien_UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <controls:DockPanel>
+        <controls:DockPanel controls:DockPanel.Dock="Top">
+            <StackPanel controls:DockPanel.Dock="Left">
+                <PersonPicture HorizontalAlignment="Center" VerticalAlignment="Center"></PersonPicture>
+            </StackPanel>
+
+            <VariableSizedWrapGrid Grid.Row="0" Orientation="Horizontal" controls:DockPanel.Dock="Top"
+                                   x:Name="StackTextbox">
+                <VariableSizedWrapGrid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="Width" Value="200"></Setter>
+                    </Style>
+
+                    <Style TargetType="ComboBox">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="Width" Value="200"></Setter>
+                    </Style>
+
+                    <Style TargetType="CalendarDatePicker">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="Width" Value="200
+                                "></Setter>
+                    </Style>
+                </VariableSizedWrapGrid.Resources>
+                <TextBox x:Name="TxbID" Header="MSHS" PlaceholderText="Mã số học sinh" 
+                         TextChanging="TxbID_TextChanging"></TextBox>
+                <TextBox x:Name="Txbname" Header="Họ và tên" PlaceholderText="Họ và tên"
+                         TextChanging="TxbID_TextChanging"></TextBox>
+                <TextBox x:Name="TxbAddress" Header="Địa chỉ" PlaceholderText="Địa chỉ"></TextBox>
+                <TextBox x:Name="TxbEmail" Header="Email" PlaceholderText="Email"></TextBox>
+
+                <ComboBox x:Name="CbbGender" Header="Giới tính" PlaceholderText="Giới tính" Margin="5"
+                          >
+                </ComboBox>
+
+                <CalendarDatePicker x:Name="DpBirthDate" Header="Ngày sinh" Width="200" Margin="5"></CalendarDatePicker>
+
+                <ComboBox x:Name="CbbClass" Header="Lớp"></ComboBox>
+                <Button Content="Thêm lớp" Margin="0 22 0 0" x:Name="BtnAddClass"
+                        Click="BtnAddClass_Click"></Button>
+                <ComboBox x:Name="CbbClassType" Header="Khối" SelectionChanged="CbbClassType_SelectionChanged"></ComboBox>
+
+                <CalendarDatePicker x:Name="DpStartDate" Header="Năm học"></CalendarDatePicker>
+                <CalendarDatePicker x:Name="DpEndDate" Header="Năm học"></CalendarDatePicker>
+            </VariableSizedWrapGrid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5"
+                        x:Name="StackButton">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="MinWidth" Value="125"></Setter>
+                        <Setter Property="Height" Value="50"></Setter>
+                        <Setter Property="FontSize" Value="15"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+
+                <Button x:Name="BtnSkip" Click="BtnSkip_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Clear"></SymbolIcon>
+                        <TextBlock Text="Bỏ qua" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnSave" Click="BtnSave_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Save"></SymbolIcon>
+                        <TextBlock Text="Lưu" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BtnAdd" Click="BtnAdd_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Add"></SymbolIcon>
+                        <TextBlock Text="Thêm" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnEdit" Click="BtnEdit_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Edit"></SymbolIcon>
+                        <TextBlock Text="Sửa" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnDelete" Click="BtnDelete_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Delete"></SymbolIcon>
+                        <TextBlock Text="Xóa" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Button>
+
+                <Button x:Name="BtnRefresh">
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Refresh"></SymbolIcon>
+                        <TextBlock Text="Làm mới" FontSize="20"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </controls:DockPanel>
+
+        <StackPanel controls:DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBox x:Name="FilterByName" Width="150" Header="Tên" Margin="8"
+	     HorizontalAlignment="Left" TextChanged="OnFilterChanged"/>
+            <TextBox x:Name="FilterByID" Width="150" Header="MSHS" Margin="8"
+	     HorizontalAlignment="Left" TextChanged="OnFilterChanged"/>
+        </StackPanel>
+
+        <controls:DataGrid ItemsSource="{Binding ListStudent}" Grid.Row="1" HorizontalScrollBarVisibility="Auto"
+                           x:Name="gvStudent" AutoGenerateColumns="False" SelectionChanged="gvStudent_SelectionChanged"
+                           IsReadOnly="True" CanUserSortColumns="True">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="MSHS" Binding="{Binding ID}"></controls:DataGridTextColumn>
+                <controls:DataGridTextColumn Header="Họ tên" Binding="{Binding Name}"></controls:DataGridTextColumn>
+                <controls:DataGridTextColumn Header="Giới tính" Binding="{Binding Gender}"></controls:DataGridTextColumn>
+                <controls:DataGridTextColumn Header="Ngày sinh" Binding="{Binding BirthDate}"></controls:DataGridTextColumn>
+                <controls:DataGridTextColumn Header="Lớp" Binding="{Binding Class.Name}"></controls:DataGridTextColumn>
+                <controls:DataGridTextColumn Header="Khối" Binding="{Binding ClassType.Name}"></controls:DataGridTextColumn>
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+    </controls:DockPanel>
+</Page>

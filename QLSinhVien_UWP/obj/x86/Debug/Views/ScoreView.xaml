@@ -1,0 +1,142 @@
+﻿<Page
+    x:Class="QLSinhVien_UWP.Views.ScoreView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:QLSinhVien_UWP.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <controls:DockPanel>
+
+        <StackPanel controls:DockPanel.Dock="Top" HorizontalAlignment="Right">
+            <VariableSizedWrapGrid HorizontalAlignment="Right" Orientation="Horizontal">
+                <VariableSizedWrapGrid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="Width" Value="120"></Setter>
+                        <Setter Property="IsReadOnly" Value="True"></Setter>
+                    </Style>
+                </VariableSizedWrapGrid.Resources>
+
+                <TextBox x:ConnectionId='19' Header="Mã học sinh" x:Name="TxbStudentID"></TextBox>
+                <TextBox x:ConnectionId='20' Header="Họ tên" x:Name="TxbStudentName"></TextBox>
+                <TextBox x:ConnectionId='21' Header="Lớp" x:Name="TxbClassName"></TextBox>
+                <TextBox x:ConnectionId='22' Header="Ngày sinh" x:Name="TxbBirthDate"></TextBox>
+                <TextBox x:ConnectionId='23' Header="Giới tính" x:Name="TxbGender"></TextBox>
+                <TextBox x:ConnectionId='24' Header="Email" x:Name="TxbEmail"></TextBox>
+                <TextBox x:ConnectionId='25' Header="Địa chỉ" x:Name="TxbAddress"></TextBox>
+            </VariableSizedWrapGrid>
+
+            <VariableSizedWrapGrid x:ConnectionId='8' Orientation="Horizontal" HorizontalAlignment="Right"
+                                   x:Name="SpTxbCourse">
+                <VariableSizedWrapGrid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="MinWidth" Value="120"></Setter>
+                        <Setter Property="IsEnabled" Value="False"></Setter>
+                    </Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="5 19 0 0"></Setter>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                        <Setter Property="MinWidth" Value="100"></Setter>
+                    </Style>
+                </VariableSizedWrapGrid.Resources>
+                <TextBox x:ConnectionId='9' Header="15 phút" x:Name="TxbTest"                                       ></TextBox>
+                <TextBox x:ConnectionId='10' Header="Giữa kì" x:Name="TxbMidTerm"                                       ></TextBox>
+                <TextBox x:ConnectionId='11' Header="Cuối kì" x:Name="TxbFinal"                                       ></TextBox>
+                <TextBox x:ConnectionId='12' Header="Trung bình" x:Name="TxbAverage" IsReadOnly="True"></TextBox>
+                <ComboBox x:ConnectionId='13' Header="Môn" Margin="5" Width="120"  x:Name="CbbCourse"
+                          DisplayMemberPath="Name"
+                          ItemsSource="{Binding ListCoure, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                <StackPanel x:ConnectionId='14' VariableSizedWrapGrid.ColumnSpan="4" Orientation="Horizontal"
+                            x:Name="SpButton">
+                    <Button x:ConnectionId='15' x:Name="BtnAdd"                       >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Add"></SymbolIcon>
+                            <TextBlock>Thêm</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:ConnectionId='16' x:Name="BtnEdit"                      >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Edit"></SymbolIcon>
+                            <TextBlock>Sửa</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:ConnectionId='17' x:Name="BtnSave"                      >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Save"></SymbolIcon>
+                            <TextBlock>Lưu</TextBlock>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:ConnectionId='18' x:Name="BtnSkip"                      >
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Clear"></SymbolIcon>
+                            <TextBlock>Bỏ qua</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </VariableSizedWrapGrid>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <controls:DockPanel>
+                <StackPanel Orientation="Horizontal" controls:DockPanel.Dock="Top" HorizontalAlignment="Right">
+                    <StackPanel.Resources>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Margin" Value="5"></Setter>
+                            <Setter Property="MinWidth" Value="100"></Setter>
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Margin" Value="5"></Setter>
+                            <Setter Property="Width" Value="120"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBox x:ConnectionId='4' Header="MSHS" x:Name="TxbFindByID"                                      ></TextBox>
+                    <TextBox x:ConnectionId='5' Header="Họ tên" x:Name="TxbFindByName"                                      ></TextBox>
+                    <ComboBox x:ConnectionId='6' x:Name="CbbClassType" Header="Chọn khối"
+                              DisplayMemberPath="Name"                                                 ></ComboBox>
+                    <ComboBox x:ConnectionId='7' x:Name="CbbClass" Header="Chọn lớp"
+                              IsEnabled="False"                                             
+                              DisplayMemberPath="Name"></ComboBox>
+                </StackPanel>
+
+                <controls:DataGrid x:ConnectionId='3' ItemsSource="{Binding FilterStudent}" HorizontalScrollBarVisibility="Visible"
+                           x:Name="DtgvStudent" AutoGenerateColumns="False" VerticalScrollBarVisibility="Visible"
+                                   SelectionMode="Extended"
+                           IsReadOnly="True" CanUserSortColumns="True"                                                >
+                    <controls:DataGrid.Columns>
+                        <controls:DataGridTextColumn Header="MSHS" Binding="{Binding ID}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Họ tên" Binding="{Binding Name}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Ngày sinh" Binding="{Binding BirthDate}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Giới tính" Binding="{Binding Gender}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Email" Binding="{Binding Email}"></controls:DataGridTextColumn>
+                        <controls:DataGridTextColumn Header="Địa chỉ" Binding="{Binding Address}"></controls:DataGridTextColumn>
+                    </controls:DataGrid.Columns>
+                </controls:DataGrid>
+            </controls:DockPanel>
+
+            <controls:DataGrid x:ConnectionId='2' Grid.Column="1" ItemsSource="{Binding FilterScore}" HorizontalScrollBarVisibility="Auto"
+                           x:Name="DtgvScore" AutoGenerateColumns="False"
+                                                                            
+                           IsReadOnly="True" CanUserSortColumns="True">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="Tên môn học" Binding="{Binding Course.Name}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="15 phút" Binding="{Binding Test}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="45 phút" Binding="{Binding MidTerm}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="Cuối kì" Binding="{Binding Final}"></controls:DataGridTextColumn>
+                    <controls:DataGridTextColumn Header="Tổng kết" Binding="{Binding AverageScore}"></controls:DataGridTextColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+        </Grid>
+    </controls:DockPanel>
+</Page>
+

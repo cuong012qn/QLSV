@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Roots >
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="FilterScore" />
+    <RootPropertyPathName Name="AverageScore" />
+    <RootPropertyPathName Name="Final" />
+    <RootPropertyPathName Name="MidTerm" />
+    <RootPropertyPathName Name="Test" />
+    <RootPropertyPathName Name="Course" />
+    <RootPropertyPathName Name="Name" />
+    <RootPropertyPathName Name="FilterStudent" />
+    <RootPropertyPathName Name="Address" />
+    <RootPropertyPathName Name="Email" />
+    <RootPropertyPathName Name="Gender" />
+    <RootPropertyPathName Name="BirthDate" />
+    <RootPropertyPathName Name="ID" />
+    <RootPropertyPathName Name="ListCoure" />
+    <RootPropertyPathName Name="ListStudent" />
+    <RootPropertyPathName Name="ClassType" />
+    <RootPropertyPathName Name="Class" />
+  </Roots.PropertyPathNames>
+  <Roots.RootTypes>
+    <RootType FullName="Windows.UI.Xaml.Application">
+      <RootProperty Name="Resources" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.ResourceDictionary">
+      <RootProperty Name="MergedDictionaries" />
+    </RootType>
+    <RootType FullName="Microsoft.UI.Xaml.Controls.XamlControlsResources" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ContentDialog">
+      <RootProperty Name="Title" />
+      <RootProperty Name="PrimaryButtonText" />
+      <RootProperty Name="SecondaryButtonText" />
+      <RootProperty Name="Content" />
+      <RootEvent Name="PrimaryButtonClick" />
+      <RootEvent Name="SecondaryButtonClick" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
+      <RootProperty Name="Children" />
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Resources" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="IsEnabled" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="IsReadOnly" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootEvent Name="TextChanged" />
+      <RootEvent Name="TextChanging" />
+    </RootType>
+    <RootType FullName="Microsoft.Toolkit.Uwp.UI.Controls.DockPanel">
+      <RootProperty Name="Children" />
+      <RootMethod Name="GetDock" />
+      <RootMethod Name="SetDock" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ComboBox">
+      <RootProperty Name="Header" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="DisplayMemberPath" />
+      <RootProperty Name="IsEnabled" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="ItemsSource" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Button">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="IsEnabled" />
+      <RootEvent Name="Click" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.SymbolIcon">
+      <RootProperty Name="Symbol" />
+    </RootType>
+    <RootType FullName="QLSinhVien_UWP.Dialog.AddClassDialog" />
+    <RootType FullName="Windows.UI.Xaml.Controls.PasswordBox">
+      <RootProperty Name="Header" />
+      <RootProperty Name="PlaceholderText" />
+      <RootProperty Name="Password" />
+    </RootType>
+    <RootType FullName="QLSinhVien_UWP.Dialog.MessageDialog" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Page">
+      <RootProperty Name="Background" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="FontSize" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.DirectUI.ProxyTypes.ThemeResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="Children" />
+      <RootProperty Name="ColumnDefinitions" />
+      <RootMethod Name="GetColumn" />
+      <RootMethod Name="SetColumn" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.NavigationView">
+      <RootProperty Name="PaneDisplayMode" />
+      <RootProperty Name="IsTabStop" />
+      <RootProperty Name="MenuItems" />
+      <RootProperty Name="Content" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.NavigationViewItem">
+      <RootProperty Name="Icon" />
+      <RootProperty Name="Content" />
+      <RootProperty Name="Tag" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Frame" />
+    <RootType FullName="QLSinhVien_UWP.MainPage" />
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="MinWidth" />
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Setter">
+      <RootProperty Name="Property" />
+      <RootProperty Name="Value" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Inlines" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Text" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.VariableSizedWrapGrid">
+      <RootProperty Name="Orientation" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="Resources" />
+      <RootMethod Name="GetColumnSpan" />
+      <RootMethod Name="SetColumnSpan" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ItemsStackPanel">
+      <RootProperty Name="ChildrenTransitions" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Border">
+      <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="BorderBrush" />
+      <RootProperty Name="Child" />
+    </RootType>
+    <RootType FullName="QLSinhVien_UWP.Views.HomeView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition" />
+    <RootType FullName="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="HorizontalScrollBarVisibility" />
+      <RootProperty Name="AutoGenerateColumns" />
+      <RootProperty Name="IsReadOnly" />
+      <RootProperty Name="CanUserSortColumns" />
+      <RootProperty Name="Columns" />
+      <RootProperty Name="VerticalScrollBarVisibility" />
+      <RootProperty Name="SelectionMode" />
+      <RootEvent Name="SelectionChanged" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
+    </RootType>
+    <RootType FullName="Microsoft.Toolkit.Uwp.UI.Controls.DataGridTextColumn">
+      <RootProperty Name="Header" />
+      <RootProperty Name="Binding" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.Control">
+      <RootProperty Name="IsEnabled" />
+      <RootProperty Name="FontSize" />
+    </RootType>
+    <RootType FullName="QLSinhVien_UWP.Views.ScoreView" />
+    <RootType FullName="Windows.UI.Xaml.Controls.CalendarDatePicker">
+      <RootProperty Name="Header" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Margin" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.PersonPicture">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="QLSinhVien_UWP.Views.StudentView" />
+  </Roots.RootTypes>
+</Roots>
